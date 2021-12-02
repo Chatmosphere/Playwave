@@ -20,15 +20,18 @@ COPY assets assets/
 # ci is preferred for automated environments
 RUN npm ci
 
-# Bundle app source
-COPY sample.js ./
-COPY playwave.js ./
+# Copy playwright files
+COPY plays/* ./plays/
+
+# Declare Volume for Test-Outputs, e.g. Screenshots
+VOLUME /app/output
 
 # Set ENV variables
 ENV TARGET_URL=https://localhost:3000
 ENV NUMBER_OF_USERS=1
 ENV NUMBER_OF_RUNS=1
-ENV TEST_NAME="playwave.js"
+ENV OUTPUT_PATH=/app/output
+ENV TEST_NAME=/app/plays/playwave.js
 
-# CMD ["node","sample.js"]
-CMD ["node","playwave.js"]
+#CMD ["node", "$TEST_NAME"] // doesn't work, see https://github.com/moby/moby/issues/5509
+CMD ["sh", "-c", "node ${TEST_NAME}"]
