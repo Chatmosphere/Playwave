@@ -66,7 +66,9 @@ function getRandomInt(min, max) {
 
   // Screenshot with current time - page.screenshot({ path: `example.png` });
   const tmpTm = Date.now()
-  await page.screenshot({ path: `screenshot-${tmpTm}.png` });
+  await page.screenshot({
+      path: `${process.env.OUTPUT_PATH}screenshot-${tmpTm}.png`,
+  });
   // Close Browser
   // await browser.close();
 })();
