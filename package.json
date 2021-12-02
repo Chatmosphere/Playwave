@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@playwright/test": "^1.18.0-alpha-nov-29-2021"
+  },
+  "dependencies": {
+    "faker": "^5.5.3",
+    "playwright": "^1.18.0-alpha-nov-29-2021",
+    "playwright-loadtest": "^1.0.1"
+  }
+}
