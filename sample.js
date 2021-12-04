@@ -9,7 +9,7 @@ function getRandomInt(min, max) {
 
 (async () => {
   const launchOptions = {
-    slowMo: 50,
+    // slowMo: 50,
     // headless: false,
     args: [
       '--disable-infobars',
@@ -54,7 +54,8 @@ function getRandomInt(min, max) {
   const elBoundingBox = await elementHandle.boundingBox()
   let mouse = page.mouse
   mouse.move(elBoundingBox.x +elBoundingBox.width/2, elBoundingBox.y +elBoundingBox.height/2)
-  mouse.click(elBoundingBox.x +elBoundingBox.width/2, elBoundingBox.y +elBoundingBox.height/2)
+  await page.waitForTimeout(100);
+  // mouse.click(elBoundingBox.x +elBoundingBox.width/2, elBoundingBox.y +elBoundingBox.height/2)
   mouse.down()
   await page.waitForTimeout(500);
   mouse.move(getRandomInt(-600,600), getRandomInt(-600,600));
@@ -67,5 +68,5 @@ function getRandomInt(min, max) {
   const tmpTm = Date.now()
   await page.screenshot({ path: `screenshot-${tmpTm}.png` });
   // Close Browser
-  await browser.close();
+  // await browser.close();
 })();
